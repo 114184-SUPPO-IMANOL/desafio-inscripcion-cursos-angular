@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form #miFormulario="ngForm" (ngSubmit)="onAdd(miFormulario)">
+        <div class="form-group">
+            <label for="exampleFormControlInput1" class="form-label">Alumno</label>
+            <input 
+            type="text" 
+            class="form-control" 
+            id="exampleFormControlInput1" 
+            placeholder="Nombre del alumno"
+            name="alumno"
+            #nombreAlumnoField = "ngModel"
+            [(ngModel)] = "alumno.nombre"
+            [ngClass]="{ 'is-invalid': nombreAlumnoField.invalid && miFormulario.submitted}" 
+            required
+            maxlength="200">
+            <div id="validationMateria" class="invalid-feedback" *ngIf="nombreAlumnoField.invalid && miFormulario.submitted">
+              El nombre es requerido y debe tener un max de 200 caracteres
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <select name="materia" ngModel class="form-select" id="inputGroupSelect01">
+              <option [value]="materia.nombre" *ngFor="let materia of localListMaterias"> {{materia.nombre}} </option>
+            </select>
+          </div>
+          <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>

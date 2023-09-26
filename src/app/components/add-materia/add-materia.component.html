@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form #miFormulario="ngForm" (ngSubmit)="onAdd(miFormulario)">
+        <div class="form-group">
+            <label for="exampleFormControlInput1" class="form-label">Materia</label>
+            <input 
+            type="text" 
+            class="form-control" 
+            id="exampleFormControlInput1" 
+            placeholder="Nombre de Materia" 
+            name="nombre"
+            #nombreMateriaField="ngModel" 
+            [(ngModel)]="materia.nombre"
+            [ngClass]="{ 'is-invalid': nombreMateriaField.invalid && miFormulario.submitted}" 
+            required
+            maxlength="50">
+            <div id="validationMateria" class="invalid-feedback" *ngIf="nombreMateriaField.invalid && miFormulario.submitted">
+                El nombre es requerido y debe tener un max de 50 caracteres
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="exampleFormControlInput1" class="form-label">Cantidad alumnos</label>
+            <input 
+            type="number" 
+            class="form-control" 
+            id="exampleFormControlInput1" 
+            placeholder="cantidad de alumnos"
+            name="limiteAlumnos"
+            #limiteAlumnosField = "ngModel"
+            [(ngModel)]="materia.limiteAlumnos"
+            [ngClass]="{ 'is-invalid': (limiteAlumnosField.value <= 0 || limiteAlumnosField.value === undefined) && miFormulario.submitted}" 
+            required>
+            <div id="validationMateria" class="invalid-feedback" *ngIf="(limiteAlumnosField.value <= 0 || limiteAlumnosField.value === undefined) && miFormulario.submitted">
+                Cupo invalido
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>

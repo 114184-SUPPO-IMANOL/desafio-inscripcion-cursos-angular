@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Materia</th>
+            <th scope="col">Alumnos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let materia of localListMateria">
+            <td>{{ materia.nombre }}</td>
+            <td>{{ materia.alumnos | listadoAlumnos}}</td>
+            <!-- Otra forma de listar -->
+            <!-- <td><ul>
+              <li *ngFor="let alumno of materia.alumnos"> {{alumno.nombre}}</li>
+            </ul></td> -->
+          </tr>
+        </tbody>
+      </table>
+</body>
+</html>
